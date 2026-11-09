@@ -6,7 +6,7 @@ Last version 23 Oct 2026
 ## What it is?
 This is custom M365 Copilot Adoption Dashboard that uses Graph API (in beta) to grab data from your M365 tenant.<br/> Some organizations, for various reasons, found existing reports in M365 Admin Portal, Viva insights or Copilot Dashboard not suitable for the purpose of driving adoption, hence there was the need for the custom dashboard. I developed this dashboard working with organizations that were in this position and needed insights into the adoption of M365 Copilot. Feedback and requirements provided by those organizations have been used as an input for the dashboard, within restrictions that provide Graph API at the moment (this dashboard is not using Audit Logs as data source).
 Now you can use this dashboard for M365 Copilot Adoption analysis in your tenant or as a starting point to further develop your own custom dashboard. <br/>
-Please provide your feedback or ideas via this [form](https://forms.office.com/r/cFsEWFJ3yD). 
+
 ## Change log
 October 23rd 2026:
 - Graph API report functions changed in beta again, this time adding versions and change Dn period. This template is updated with latest beta/reports.
@@ -18,7 +18,9 @@ February 11th 2026:
 - Bug Fix - Card visual after PBI update shows larger icons than planned - this was fixed
 - Bug Fix - Table 'X' contains a duplicate value '(Unknown)' - fixed (for some reason some graph funcions picked up Unknown for UPN for several users and that caused relationship errors). New version is filtering those values and error is not present any more.
   If you customized table a lot, and don't want to re-use template fix this error on your own by filtering 4 tables (_Teams User Detail, OneDrive Activity User Detail, M365 Apps User Detail_ and _Email User Details_) as shown:
-  ![Unknown error fix.](/Images/Unknown.png)
+<img width="689" height="310" alt="image" src="https://github.com/user-attachments/assets/e83593a6-fe33-456e-8f6f-4de04be45161" />
+
+  
 
 June 26th 2025:
 - Bug Fix - Users page now shows only currently licensed users. Previous version kept users with removed license which resulted in showing incorrect total number of Copilot users with license and inconsistencies in the report.
@@ -32,7 +34,8 @@ This dashboard contains four pages:
 3. Readiness
 4. Organizational Insights: Copilot vs Non-Copilot Users
 ### 1. Overview and History
-![Screenshot showing overview.](/Images/Dashboard1.png)
+<img width="4394" height="2482" alt="image" src="https://github.com/user-attachments/assets/4a49afd4-b811-4b4b-976f-bcfe56399ddd" />
+
 1. Card shows active users % and total number of active users in the last 30 days (Active users # is the total number of users with Copilot license in your organization who tried a user-initiated Microsoft 365 Copilot feature).
 2. Shows user distribution per Copilot usage in different apps (Where the prompt has been triggered from, have in mind single user can run Copilot in different tools so that means same user can contribute to Word and Excel values in the chart)
 3. Top 10 departments in the organization per number of active users (Departments are taken from Entra ID field department)
@@ -42,7 +45,8 @@ This dashboard contains four pages:
 7. 6 months aggregated historical overview of active users. Axis slider enables zoom in. When using % you can drill down on daily level.
 ### 2. Users
 This page shows details about users with assigned M365 Copilot license.
-![Screenshot showing overview.](/Images/Dashboard2.png)
+<img width="4390" height="2487" alt="image" src="https://github.com/user-attachments/assets/fd57d9f6-7319-4569-82f2-692b3439c43b" />
+
 1. Card shows M365 Copilot enabled users (with license assigned) [*See known issues](## Known Issues)
 2. Enabled users are distributed in 4 sub categories:
    a. Active Users - the ones that had at least 1 prompt in any of the M365 Copilot interfaces in the last 30 days </br>
@@ -57,7 +61,8 @@ This page shows details about users with assigned M365 Copilot license.
 8. Cards that show the last date of usage for M365 Copilot in each tool (if user is active). For inactive users, card will be marked in red without any date. [*See known issues](## Known Issues)
 ### 3. Readiness
 This page shows details about all users from Microsoft Entra ID (excluding service and external accounts) withouth M365 Copilot License assigned.
-![Screenshot showing overview.](/Images/Dashboard3.png)
+<img width="4394" height="2482" alt="image" src="https://github.com/user-attachments/assets/5589fffc-4060-4c68-9f0d-dde293b86370" />
+
 1. Card shows number of Entra ID users (excluding service and external accounts) without M365 Copilot License assigned.
 2. Users are distributed in 4 sub categories based how "good" are they in using M365 services (as you want to assign Copilot license to user that is already mature user of M365 rather than to someone who is not yet there):
    a. Priority A - 11+ points for M365 usage (definition is provided on the page itself)
@@ -69,7 +74,8 @@ This page shows details about all users from Microsoft Entra ID (excluding servi
 5. Cards that show per user usage of some of the M365 Features (Apps - if a user is viewing/editing files in any of apps, Teams Activity - what user does in Teams, OneDrive Activity - what users do with files in their OneDrive)
 ### 4. Organizational insights: Copilot vs Non-Copilot Users
 This page shows behaviors of Copilot vs Non-Copilot users for common M365 metrics.
-![Screenshot showing overview.](/Images/Dashboard5.png)
+<img width="4400" height="2484" alt="image" src="https://github.com/user-attachments/assets/731281ad-8bf7-4fd5-98e6-d300b4449e46" />
+
 1. Average values of Teams activities including calls, meetings (organized), channel and chat messages and audio, video and screen share duration for the past 30 days.
 2. Average values of OneDrive activities including viewed/edited files, synced files and shared files for the past 30 days.
 3. Average values of Email activities including emails sent, received and read over the past 30 days.
@@ -85,41 +91,49 @@ You need to take following steps:
 1. Sign in to the [Azure portal](https://portal.azure.com/).
    (For these actions you need at least Cloud Application Administrator role.)
 3. Go to **Microsoft Entra ID > App registrations**. 
-![Screenshot showing the Entra app registration.](/Images/Setup1.png)
+<img width="800" height="512" alt="image" src="https://github.com/user-attachments/assets/b0d6408d-e4ec-41d5-a25c-521cafedc78b" />
+
 4. Select **+ New Registration**.
 5. Enter a name. For example, use the **Copilot Graph API** name. Don't change any other settings and select **Register**.
 6. Select **API Permissions > + Add a permission**.
- ![Screenshot that shows API permissions.](/Images/Setup2.png)  
+ <img width="800" height="512" alt="image" src="https://github.com/user-attachments/assets/3269e2b9-878c-470a-aa15-385d70f1fbd0" />
+ 
 7. Select **Microsoft Graph** and configure permissions as follows:
-![Screenshot showing permissions.](/Images/Setup3.png)
+<img width="1018" height="200" alt="image" src="https://github.com/user-attachments/assets/853b28c6-8098-4612-a5c0-e6f8655c212c" />
+
 8. Don't forget to add **Grant Admin Consent for (your organization)**.
 9. Select **Certificates and secrets**.
 10. Select **+ New client secret**.
 11. Add a description and expiration (in line with your organization's policies), and then select **Add**.
 12. Copy and paste the **Secret** to a text document such as Notepad.
-![Screenshot showing secret.](/Images/Setup4.png)
+<img width="700" height="66" alt="image" src="https://github.com/user-attachments/assets/f559fbea-6ebe-492b-9085-3a0b34aae35e" />
+
 13. Select **Overview** and copy and paste the application (client) ID and Directory (tenant) ID value to the same text document. Be sure to make a note of which GUID is for which value.
-![Screenshot showing tenant ID and client ID.](/Images/Setup5.png)
+<img width="700" height="199" alt="image" src="https://github.com/user-attachments/assets/9773719d-411a-4dfe-9ddf-e28fcee1963c" />
+
 
 ### 2. Get Latest Version of Power BI Desktop and configure
 1. If you don't have it, you can download it from [here](https://www.microsoft.com/en-us/download/details.aspx?id=58494&msockid=3d302a18b1e16b4b0f433bb7b5e16d2d)
 2. Once installed start Power BI desktop. Go to **File > Options and Settings > Options**
 3. Enable **Text Slicer Visual** under **Preview features** (you will have to restart app)
-![Screenshot showing Power BI configuration.](/Images/Setup6.png)
+<img width="973" height="752" alt="image" src="https://github.com/user-attachments/assets/ac4283b2-8744-4a44-ba71-8e0e9ed4761e" />
 
 ### 3. Download and run the template (.pbit)
 1. Download [template](/M365_Copilot_Adoption_Dashboard_template.pbit).
 2. Start template.
 3. Enter required parameters that you collected in step 1. of the setup.
-![Screenshot showing template.](/Images/Start1.png)
+<img width="681" height="323" alt="image" src="https://github.com/user-attachments/assets/38159804-bde2-4710-9a7f-39b164b4d24b" />
+
 4. Wait for data to load.
 5. Replace **Insert Company Logo** image with real logo of your organization. Look for how to insert image in Power BI desktop if you don't know how.</br>
-![Screenshot showing logo.](/Images/Start2.png)
+<img width="148" height="112" alt="image" src="https://github.com/user-attachments/assets/00e4eb6f-cea5-49fd-9999-5f94a18aec88" />
+
 7. **REQUIRED**: Save your file as PBIX. Remember this is just a template loaded with data - until you save the file as pbix.
 8. Optional: Publish and configure daily scheduled refresh. Again, look on the internet for details. If you have credential issues, make sure they follow these settings and everything should work:</br>
-![Screenshot showing credentials.](/Images/Start3.png)   
+<img width="260" height="161" alt="image" src="https://github.com/user-attachments/assets/187f0a85-298c-4ad2-a773-931042a9f32f" />
+
 ## Known Issues
-1. Due to standard report features - Copilot activity on a given day, the report becomes available within 72 hours of the end of that day (in UTC) - you might notice delays even when refreshing dashboard for some values up to 3 days from the refresh time. 
+1. Due to standard report features - Copilot activity on a given day, **the report becomes available within 72 hours of the end of that day (in UTC)** - you might notice delays even when refreshing dashboard for some values up to 3 days from the refresh time. 
 2. On the users page you might have situation where certain user has Last Activity Date not empty, while at the same time other cards (Teams, Chat, Outlook...) show empty values. My assumption is that these are users who use Copilot Chat (web) and they don't have M365 Copilot License assigned. Why this happens I still have no confirmation or reasoning behind it, but I will update this once either more details are provided, or Graph API is updated with Copilot Chat functions.
 
 ## Unknown Issues
